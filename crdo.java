@@ -5,12 +5,13 @@ import java.io.InputStreamReader;
 public class crdo {
 	public static void main(String[] args) {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		int sec =0;
+		int a =0,b=0;
 		try {
-			sec= Integer.parseInt(bf.readLine());
+			a= Integer.parseInt(bf.readLine());
+			b= Integer.parseInt(bf.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("It is "+(sec-sec%3600)/3600+" hours "+(sec%3600-sec%60)/60+" minutes.");
+		System.out.println(a-b%a);
 	}
 }
