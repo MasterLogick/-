@@ -12,6 +12,6 @@ public class crdo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println((a * b % 109 + 109) % 109);
+		System.out.println(a%7+b-1);
 	}
 }
