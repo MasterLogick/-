@@ -5,25 +5,19 @@ import java.io.InputStreamReader;
 public class crdo {
 	public static void main(String[] args) {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		int a = 0, b = 0, c = 0;
+		int a = 0, b = 0, c = 0,d = 0;
 		try {
 			a = Integer.parseInt(bf.readLine());
 			b = Integer.parseInt(bf.readLine());
 			c = Integer.parseInt(bf.readLine());
+			d = Integer.parseInt(bf.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (a == b && b == c) {
-			System.out.println(3);
+		if(Math.abs(a-c)%2==Math.abs(b-d)%2){
+			System.out.println("YES");
 			return;
 		}
-		//  a b c
-		//  1 1 2         1 2 1         2 1 1
-		//  1  1||1  2    1  1||1  2    1  1||1 2
-		if((a==b&&b!=c)||(a==c&&a!=b)||(c==b&&c!=a)){
-			System.out.println(2);
-			return;
-		}
-		System.out.println(0);
+		System.out.println("NO");
 	}
 }
