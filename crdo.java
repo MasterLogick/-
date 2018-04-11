@@ -6,40 +6,18 @@ public class crdo {
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         //         1      5      10     20     60
-        int a = 0, b = 0, c = 0, d = 0, e = 0;
+        int k = 0, m = 0, n = 0;
         try {
-            a = Integer.parseInt(bf.readLine());
-            b = Integer.parseInt(bf.readLine());
-            c = Integer.parseInt(bf.readLine());
-            d = Integer.parseInt(bf.readLine());
-            e = Integer.parseInt(bf.readLine());
+            k = Integer.parseInt(bf.readLine());
+            m = Integer.parseInt(bf.readLine());
+            n = Integer.parseInt(bf.readLine());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        if (b > c) {
-            int tmp = b;
-            b = c;
-            c = tmp;
-        }
-        if (a > b) {
-            int tmp = a;
-            a = b;
-            b = tmp;
-        }
-        if (b > c) {
-            int tmp = b;
-            b = c;
-            c = tmp;
-        }
-        if (d > e) {
-            int tmp = d;
-            d = e;
-            e = tmp;
-        }
-        if (a<=d&&b<=e){
-            System.out.println("YES");
-        }else{
-            System.out.println("NO");
-        }
+        if (n <= k) {
+            System.out.println(2 * m);
+        } else if (n * 2 % k == 0) {
+            System.out.println(m * n * 2 / k);
+        } else System.out.println(m * (1 + n * 2 / k));
     }
 }
