@@ -12,11 +12,27 @@ public class crdo {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        BigInteger bi = new BigInteger("0");
-        for (int i = 2; i <a ; i++) {
-            System.out.print(i-1+"*"+i+"+");
-            bi=bi.add(new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(i-1))));
+        int counter=0;
+        int step = 1;
+        for (int i = 0; i <a ; i++) {
+            if(counter<step){
+                counter++;
+                if(i+1==a){
+                    System.out.print(step);
+                    return;
+                }else{
+                    System.out.print(step+" ");
+                }
+            }else{
+                step++;
+                counter=1;
+                if(i+1==a){
+                    System.out.print(step);
+                    return;
+                }else{
+                    System.out.print(step+" ");
+                }
+            }
         }
-        System.out.println(a-1+"*"+a+"="+bi.add(new BigInteger(Integer.toString(a)).multiply(new BigInteger(Integer.toString(a-1)))).toString());
     }
 }
