@@ -13,6 +13,7 @@ public class crdo {
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         Vector<Integer> a = new Vector<Integer>();
+        int height=0;
         try {
             bf.readLine();
             String s = bf.readLine();
@@ -20,19 +21,16 @@ public class crdo {
             while (st.hasMoreElements()){
                 a.add(Integer.parseInt(st.nextToken()));
             }
+            height=Integer.parseInt(bf.readLine());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        if(a.size()>1) {
-            int tmp = a.get(a.size() - 1);
-            for (int i = a.size() - 2; i >= 0; i--) {
-                a.set(i + 1, a.get(i));
+        for (int i = 0; i <a.size(); i++) {
+            if(a.get(i)<height){
+                System.out.println(i+1);
+                return;
             }
-            a.set(0,tmp);
         }
-        for (int i = 0; i < a.size()-1; i++) {
-            System.out.print(a.get(i)+" ");
-        }
-        System.out.println(a.get(a.size()-1));
+        System.out.println(a.size()+1);
     }
 }
