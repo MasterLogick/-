@@ -3,7 +3,9 @@ import sun.java2d.SurfaceDataProxy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -21,10 +23,16 @@ public class crdo {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int count =0;
-        for (int i = 1; i <a.size(); i++) {
-            if(a.get(i)>a.get(i-1))count++;
+        if(a.size()>1) {
+            int tmp = a.get(a.size() - 1);
+            for (int i = a.size() - 2; i >= 0; i--) {
+                a.set(i + 1, a.get(i));
+            }
+            a.set(0,tmp);
         }
-        System.out.println(count);
+        for (int i = 0; i < a.size()-1; i++) {
+            System.out.print(a.get(i)+" ");
+        }
+        System.out.println(a.get(a.size()-1));
     }
 }
