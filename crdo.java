@@ -8,33 +8,35 @@ public class crdo {
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         Vector<Integer> a = new Vector<Integer>();
-        int k = 0, m = 0;
         try {
+            bf.readLine();
             String s = bf.readLine();
             StringTokenizer st = new StringTokenizer(s, " ");
-            st.nextToken();
-            k = Integer.parseInt(st.nextToken());
-            m = Integer.parseInt(st.nextToken());
-            s = bf.readLine();
-            st = new StringTokenizer(s, " ");
             while (st.hasMoreElements()) {
                 a.add(Integer.parseInt(st.nextToken()));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int b = 0;
-        for (int i = 0; i < a.size(); i++) {
-            if (i <= k) {
-                b += a.get(i);
-            } else {
-                if (b == m) {
-                    System.out.println(i-k);
-                    return;
-                }
-                b=b-a.get(i-k-1)+a.get(i);
+        if(a.size()==1){
+            System.out.println(0);
+            return;
+        }
+        if(a.size()==2&&a.get(0)!=a.get(1)){
+            System.out.println(0);
+        }
+        if(a.size()==2&&a.get(0)==a.get(1)){
+            System.out.println(1);
+        }
+        int count = 0;
+        for (int i = 1; i < a.size()-1; i++) {
+
+            if((a.get(i)==a.get(i+1))||(a.get(i)==a.get(i-1))||(a.get(i)>a.get(i-1)&&a.get(i)<a.get(i+1))||(a.get(i)<a.get(i-1)&&a.get(i)>a.get(i+1))){
+                a.remove(i);
+                i--;
+                count++;
             }
         }
-        System.out.println(0);
+        System.out.println(count);
     }
 }
