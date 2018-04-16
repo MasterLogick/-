@@ -8,46 +8,33 @@ public class crdo {
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         Vector<Integer> a = new Vector<Integer>();
+        int k = 0, m = 0;
         try {
-            //bf.readLine();
             String s = bf.readLine();
             StringTokenizer st = new StringTokenizer(s, " ");
-
-
-            st.nextToken();//-------------------------------------------------------------------------------------------------
-
-
+            st.nextToken();
+            k = Integer.parseInt(st.nextToken());
+            m = Integer.parseInt(st.nextToken());
+            s = bf.readLine();
+            st = new StringTokenizer(s, " ");
             while (st.hasMoreElements()) {
                 a.add(Integer.parseInt(st.nextToken()));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int count = 0;
-        boolean f = false;
-        while (true) {
-            for (int i = 1; i < a.size() - 1; i++) {
-                if (a.get(i) == a.get(i - 1) && a.get(i) == a.get(i + 1)) {
-                    int tmp = i + 1;
-                    for (; tmp < a.size(); tmp++) {
-                        if (a.get(tmp - 1) != a.get(tmp)) {
-                            tmp--;
-                            break;
-                        }
-                    }
-                    count += tmp - i + 2;
-                    for (int j = 0; j < tmp - i + 2; j++) {
-                        a.remove(i-1);
-                    }
-                    f = true;
-                    break;
+        int b = 0;
+        for (int i = 0; i < a.size(); i++) {
+            if (i <= k) {
+                b += a.get(i);
+            } else {
+                if (b == m) {
+                    System.out.println(i-k);
+                    return;
                 }
+                b=b-a.get(i-k-1)+a.get(i);
             }
-            if (!f) {
-                System.out.println(count);
-                return;
-            } else
-                f = false;
         }
+        System.out.println(0);
     }
 }
