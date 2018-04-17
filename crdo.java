@@ -1,5 +1,3 @@
-import sun.font.TrueTypeFont;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,12 +9,12 @@ public class crdo {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         Vector<Integer> a = new Vector<Integer>();
         try {
-            bf.readLine();
+            //bf.readLine();
             String s = bf.readLine();
             StringTokenizer st = new StringTokenizer(s, " ");
 
 
-            //st.nextToken();//-------------------------------------------------------------------------------------------------
+            st.nextToken();//-------------------------------------------------------------------------------------------------
 
 
             while (st.hasMoreElements()) {
@@ -25,31 +23,36 @@ public class crdo {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        boolean was = false;
-        boolean has = false;
-        String s = "";
-        for (int i = 0; i < a.size(); i++) {
-            for (int j = 0; j <i; j++) {
-                if(a.get(j)==a.get(i)){
-                    was=true;
+        int count = 0;
+        boolean f = false;
+        while (true) {
+            for (int i = 1; i < a.size() - 1; i++) {
+                if (a.get(i) == a.get(i - 1) && a.get(i) == a.get(i + 1)) {
+                    int tmp = i + 1;
+                    for (; tmp < a.size(); tmp++) {
+                        if (a.get(tmp - 1) != a.get(tmp)) {
+                            tmp--;
+                            break;
+                        }
+                    }
+                    if(tmp==a.size())tmp--;
+                    count += tmp - i + 2;
+                    for (int j = 0; j < tmp - i + 2; j++) {
+                        //try {
+                        a.remove(i - 1);
+                        /*} catch (ArrayIndexOutOfBoundsException ex) {
+
+                        }*/
+                    }
+                    f = true;
                     break;
                 }
             }
-            if(was){
-                was=false;
-                continue;
-            }
-            for (int j = i+1; j < a.size(); j++) {
-                if(a.get(j)==a.get(i)){
-                    has=true;
-                    break;
-                }
-            }
-            if(has){
-                has=false;
-                s+=a.get(i)+" ";
-            }
+            if (!f) {
+                System.out.println(count);
+                return;
+            } else
+                f = false;
         }
-        System.out.println(s.trim());
     }
 }
