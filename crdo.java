@@ -1,46 +1,55 @@
+import sun.font.TrueTypeFont;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 public class crdo {
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int[] a = new int[10];
+        Vector<Integer> a = new Vector<Integer>();
         try {
+            bf.readLine();
             String s = bf.readLine();
             StringTokenizer st = new StringTokenizer(s, " ");
-            for (int i = 0; i < 10; i++) {
-                a[i] = Integer.parseInt(st.nextToken());
+
+
+            //st.nextToken();//-------------------------------------------------------------------------------------------------
+
+
+            while (st.hasMoreElements()) {
+                a.add(Integer.parseInt(st.nextToken()));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int max = 0;
-        for (int i = 0; i < 10; i++) {
-            if (a[i] == 0 || a[i] == 2) continue;
-            int left = 0, right = 0;
-            for (int j = i - 1; j >= 0; j--) {
-                if (a[j] == 2) {
-                    left = i - j;
+        boolean was = false;
+        boolean has = false;
+        String s = "";
+        for (int i = 0; i < a.size(); i++) {
+            for (int j = 0; j <i; j++) {
+                if(a.get(j)==a.get(i)){
+                    was=true;
                     break;
                 }
             }
-
-            for (int j = i + 1; j < 10; j++) {
-                if (a[j] == 2) {
-                    right = j - i;
+            if(was){
+                was=false;
+                continue;
+            }
+            for (int j = i+1; j < a.size(); j++) {
+                if(a.get(j)==a.get(i)){
+                    has=true;
                     break;
                 }
             }
-            if (left == 0)
-                max = Math.max(right, max);
-            else if (right == 0)
-                max = Math.max(left, max);
-
-            else
-                max = Math.max(Math.min(left, right), max);
+            if(has){
+                has=false;
+                s+=a.get(i)+" ";
+            }
         }
-        System.out.println(max);
+        System.out.println(s.trim());
     }
 }
